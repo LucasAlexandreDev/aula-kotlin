@@ -302,16 +302,18 @@ fun main(){
     println(numeros[1]) // 50
 
     //numeros[2] = "Lucas" // não funciona pela incompatibilidade
-    println(numeros[5])  // não funciona (index não encontrado)
+    //println(numeros[5])  // não funciona (index não encontrado)
 
-    // ---| COLLECTIONS - LISTA COMUM (mutável) |---
+    // ---| COLLECTIONS - LISTA COMUM (imutável) |---
 
     var frutas = listOf("banana", "maçã", "maçã")
+
+    //frutas.add("Limão") // não funciona
+    //frutas.remove(2)    // não funciona
 
     println(frutas)
     println(frutas[0]) // banana
 
-    // ---| COLLECTIONS - LISTA COMUM (imutável) |---
 
     var frutas2 = listOf("banana", "maçã", "laranja")
 
@@ -320,6 +322,140 @@ fun main(){
     println(frutas2.last())             // laranja
     println(frutas2.contains("banana")) // true
 
+    // ---| COLLECTIONS - LISTA COMUM (mutável) |---
+
+    var carros = mutableListOf("Corsa", "Celta")
+
+    println(carros.size)          // 2
+    println(carros.last())        // Celta
+    println(carros.add("Fusca"))  // Adiciona o item Fusca - true
+    println(carros.last())        // Fusca
+
+    println(carros)
+
+    // ---| COLLECTIONS - SET COMUM (imutável) |---
+
+    // Não permite repetição (ignora automaticamente os elementos repetidos)
+
+    var cores = setOf("Azul", "Verde", "Azul")
+
+    println(cores)   // [Azul, Verde, Amarelo]
+
+    //cores.add("Amarelo")   // não funciona
+    //cores.remove("Verde")  // não funciona
+
+    // ---| COLLECTIONS - SET COMUM (mutável) |---
+
+    // Funciona como um SET, mas permite alterações
+
+    var cores2 = mutableSetOf("Azul", "Verde", "Azul")
+
+    cores2.add("Amarelo")
+    cores2.add("Rosa")
+    cores2.add("Azul") // ignora
+    cores2.remove("Verde")
+
+    println(cores2)   // [Azul, Verde, Amarelo, Rosa]
+
+    // ---| COLLECTIONS - MAP COMUM (imutável) |---
+
+    // trabalho com chave => valor
+
+    val pessoas = mapOf(
+
+        "João" to 25,
+        "Maria" to 30,
+        "Pedro" to 30,
+    )
+
+    println(pessoas["João"])  // vai retornar o valor (idade) - 25
+    println(pessoas["Lucas"]) // caso algum valor, não contenha no map - retorna null
+    //pessoas["Maria"] = 27   // não conseguimos alterar os valores, das chaves já criadas
+
+    println(pessoas)
+
+
+    // ---| COLLECTIONS - MAP COMUM (mutável) |---
+
+    val produtos = mutableMapOf(
+
+        "pc" to "Computador",
+        "ms" to "Mouse",
+        "mt" to "Monitor"
+    )
+
+    println(produtos["pc"])       // Computador
+    println(produtos["ms"])       // Mouse
+    produtos.remove("pc")   // Remove o Computador
+
+    println(produtos)             // {ms=Mouse, mt=Monitor}
+
+
+    // ---| OPERADORES - INTERVALO |---
+
+    // colcamos os números inciais e finais, com o operador no centro
+
+    1 .. 5          // 1 a 5
+    1 until 5       // 1 a 4
+    5 downTo 1      // 5 a 1
+    1 .. 10 step 2  // 1, 3, 5, 7, 9
+
+
+    // ---| ESTRUTURA DE REPETIÇÃO - WHILE |---
+
+    var i = 0  // serve como contador inicial
+
+    while (i < 5) { // condição
+
+        println(i)
+
+        i++ // incrementa o contador
+    }
+
+
+    // ---| ESTRUTURA DE REPETIÇÃO - FOR |---
+
+    for (i in 1 .. 5){ // in - para cada elemento 1, dentro desse intervalo (lista), armazena dentro da variável i
+
+        println(i)
+    }
+
+    // percorrendo uma colletion - valor do elemento
+
+    var carros2 = listOf("Corsa", "Celta", "Fusca")
+
+    for (carro in carros2){
+        println(carro) // Corsa, Celta, Fusca
+    }
+
+    // percorrendo uma colletion - valor do indíce
+
+    val comidas = listOf("Batata", "Doce", "Salgado")
+
+    for (comida in comidas.indices){
+        println(comida) //  0, 1, 2
+    }
+
+    // percorrendo uma colletion - valor do elemento + indíce
+
+    val comida2 = listOf("Batata", "Doce", "Salgado")
+
+    for ( (indice, comida) in comidas.withIndex()){
+
+        println("$comida = $indice") // Batata = 0, Doce = 1, Salgado = 2
+    }
+
+    val idadeIntervalo = 25
+
+    when (idadeIntervalo) {
+
+        // in - operador de comparação (verifica o valor da idade, dentro dos intervalos
+        in 0 .. 12 -> println("Criança")
+        in 13 .. 17 -> println("Adolescente")
+        in 18 .. 59 -> println("Adulto")
+
+        else -> println("Idoso")
+    }
 }
 
 
