@@ -456,6 +456,56 @@ fun main(){
 
         else -> println("Idoso")
     }
+
+
+    // ---| FILTER |---
+
+    // filtrar e pegar alguma elemento, criando uma nova lista com os elementos filtrados
+
+    val listaNumericaFilter = (1 .. 10).toList()
+
+    val pares = listaNumericaFilter.filter { numero -> numero % 2 == 0 } // espero um predicato (somente um número) e retorna um boolean
+
+    //  --- ou ---
+
+    // val pares = listaNumerica.filter { it % 2 == 0 } // como é somente um parârametro (número), fica omitido, onde usamos o it (numero -> numero)
+
+    println(pares) // [2, 4, 6, 8, 10]
+
+
+    // ---| MAP |---
+
+    // processamento dos elementos, criando uma nova lista com os elementos modificados
+
+    val listaNumericaMap = (1..5).toList()
+
+    val dobro = listaNumericaMap.map { numero -> numero * 2 }
+
+    // --- ou ---
+
+    // val dobro = listaNumericaMap.map { it * 2 }
+
+    println(dobro) // [2, 4, 6, 8, 10]
+
+
+    // ---| REDUCE |---
+
+    var listaNumericaReduce = (1 ..5).toList()
+
+    val soma = listaNumericaReduce.reduce { acumulador, numero -> acumulador + numero } // acumulador - primeiro número
+                                                                                        // número - elementos do array
+
+    /*
+        acumulador | número     // por o acumulador ser 1, o número já começa com 2
+        1       +      2
+        3       +      3
+        6       +      4
+        10      +      5
+
+    */
+
+    println(soma) // 15
+
 }
 
 
